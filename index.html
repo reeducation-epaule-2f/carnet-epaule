@@ -147,13 +147,39 @@ body{margin:0;background:#0f766e}
 #view-kine .irm{border:2px solid var(--red);color:var(--red)}
 #view-kine .ibtn:focus-visible,#view-kine .irm:focus-visible{outline:3px solid var(--clay);outline-offset:2px}
 #view-patient .grp,#view-kine .grp{margin:14px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:17px;color:var(--teal)}
+#view-kine .addrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+#view-kine .xadd,#view-kine .xrest,#view-kine .xdel{cursor:pointer;font:700 14px "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+#view-kine .xadd{min-height:40px;padding:0 14px;border-radius:10px;border:2px solid var(--teal);background:var(--teal);color:#fff}
+#view-kine .xrest{min-height:40px;padding:0 14px;border-radius:10px;border:2px dashed var(--teal);background:transparent;color:var(--teal)}
+#view-kine .delrow{margin-top:10px}
+#view-kine .xdel{min-height:34px;padding:0 12px;border-radius:8px;border:2px solid var(--red);background:transparent;color:var(--red)}
+#view-kine .xadd:focus-visible,#view-kine .xrest:focus-visible,#view-kine .xdel:focus-visible{outline:3px solid var(--clay);outline-offset:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #view-kine .xadd{color:#0e1b1a}}
+#view-patient .bon .xl{margin-top:10px}
+#view-kine .cseil .card label{display:block;margin-top:10px;font-size:13px;font-weight:700;color:var(--mute)}
+#view-kine .cseil .card input{display:block;width:100%;margin-top:3px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+#view-patient .drop .vp{width:100%;max-width:260px;height:10px;margin-top:10px;accent-color:var(--teal)}
+#view-patient .drop .dl{margin:8px 0 0;font-size:14px;color:var(--mute)}
+#view-patient .drop .dbtn:disabled{opacity:.5;cursor:wait}
+#view-kine .kvrow{padding:12px 0;border-top:1px solid var(--line)}
+#view-kine .kvrow:first-child{border-top:0;padding-top:0}
+#view-kine .kvinfo{display:flex;flex-direction:column;gap:2px}
+#view-kine .kvinfo span{color:var(--mute);font-size:14px;overflow-wrap:anywhere}
+#view-kine .kvact{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+#view-kine .kvact button{min-height:36px;padding:0 14px;border-radius:8px;border:2px solid var(--teal);background:transparent;color:var(--teal);font:700 14px "Trebuchet MS","Segoe UI",system-ui,sans-serif;cursor:pointer}
+#view-kine .kvact .kvdel{border-color:var(--red);color:var(--red)}
+#view-kine .kvact button:disabled{opacity:.5}
+#view-kine .kvact button:focus-visible{outline:3px solid var(--clay);outline-offset:2px}
+#view-kine .kvst{margin:6px 0 0;font-size:14px;color:var(--mute)}
+#view-kine .kvprev video{display:block;width:100%;max-width:520px;margin-top:8px;border-radius:10px;background:#000}
 #view-kine:not(.authed) .wrap>*:not(#kn-login){display:none!important}
 #view-kine.authed #kn-form{display:none}
 #view-kine:not(.authed) #kn-bar{display:none}
 #view-kine #kn-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 #view-kine #kn-login label{display:block;font-size:13px;font-weight:700;color:var(--mute)}
 #view-kine #kn-login input{display:block;width:100%;max-width:360px;margin:4px 0 10px;border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);color:var(--ink);font:inherit}
-.switch .mb{margin-left:auto;align-self:center;font-size:12px;color:var(--sk);opacity:.75}
+.switch{position:relative!important;top:auto!important;flex-wrap:wrap;justify-content:center}
+.switch .mb{margin:0;flex:0 0 100%;text-align:center;font-size:12px;color:var(--sk);opacity:.75;min-height:1em}
 </style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%BE%3C/text%3E%3C/svg%3E">
 <script>(function(){
 var res;var ready=new Promise(function(r){res=r});
@@ -434,8 +460,8 @@ window.claude={use:function(n){return ready.then(function(api){return api?(api[n
 
 <p class="sub" style="margin-top:18px">Je dépose mes vidéos ici : mon kiné les récupère et mesure mes amplitudes avec l’application GonioCam.</p>
 <div class="drops">
-<div class="drop"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1-.5 7.97"/><path d="M12 12v8M9 15l3-3 3 3"/></svg><h3>Vidéo de face</h3><p>Debout devant un mur, je me filme de face.</p><button type="button" class="dbtn">Choisir un fichier</button><small>MP4 ou MOV · 100 Mo maximum</small><p class="dm" aria-live="polite"></p></div>
-<div class="drop"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1-.5 7.97"/><path d="M12 12v8M9 15l3-3 3 3"/></svg><h3>Vidéo de profil</h3><p>Debout devant un mur, je me filme de profil.</p><button type="button" class="dbtn">Choisir un fichier</button><small>MP4 ou MOV · 100 Mo maximum</small><p class="dm" aria-live="polite"></p></div>
+<div class="drop"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1-.5 7.97"/><path d="M12 12v8M9 15l3-3 3 3"/></svg><h3>Vidéo de face</h3><p>Debout devant un mur, je me filme de face.</p><button type="button" class="dbtn">Choisir un fichier</button><small>MP4 ou MOV</small><p class="dm" aria-live="polite"></p></div>
+<div class="drop"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1-.5 7.97"/><path d="M12 12v8M9 15l3-3 3 3"/></svg><h3>Vidéo de profil</h3><p>Debout devant un mur, je me filme de profil.</p><button type="button" class="dbtn">Choisir un fichier</button><small>MP4 ou MOV</small><p class="dm" aria-live="polite"></p></div>
 </div>
 
 <details class="rappel"><summary>Revoir les mouvements à filmer</summary>
@@ -446,12 +472,12 @@ window.claude={use:function(n){return ready.then(function(api){return api?(api[n
 
 <h2>Mes bons réflexes</h2>
 <div class="bons">
-<div class="bon c0"><span class="ico" aria-hidden="true">🚭</span><div><b>1. Tabac</b><ul><li>Je diminue progressivement mon nombre de cigarettes.</li><li>Le tabac freine la cicatrisation.</li></ul></div></div>
-<div class="bon c1"><span class="ico" aria-hidden="true">🩹</span><div><b>2. Cicatrice</b><ul><li>Je protège ma cicatrice du soleil.</li><li>Je la masse chaque jour.</li><li>Je garde une bonne hygiène de la plaie.</li></ul></div></div>
-<div class="bon c2"><span class="ico" aria-hidden="true">🌙</span><div><b>3. Qualité de vie</b><ul><li>Je gère mon sommeil.</li><li>J’essaie d’améliorer la gestion de mon stress au quotidien.</li><li>J’adapte mon poste de travail.</li><li>J’utilise mon bras dans les gestes de la vie quotidienne.</li></ul></div></div>
-<div class="bon c0"><span class="ico" aria-hidden="true">🥗</span><div><b>4. Bonne hygiène de vie</b><ul><li>Je mange sainement (fibres et protéines).</li><li>Je m’hydrate bien.</li><li>Je reste actif chaque jour, en suivant les recommandations de l’OMS.</li></ul></div></div>
-<div class="bon c1"><span class="ico" aria-hidden="true">🏋️</span><div><b>5. Gestion du stress mécanique</b><ul><li>Je gère bien mon entraînement.</li></ul></div></div>
-<div class="bon c2"><span class="ico" aria-hidden="true">🧘</span><div><b>6. Gestion du stress général</b><ul><li>Je fais des exercices de relaxation, comme la cohérence cardiaque.</li><li>Je pratique la méditation ou la relaxation.</li><li>Je fais des exercices de respiration.</li></ul></div></div>
+<div class="bon c0"><span class="ico" aria-hidden="true">🚭</span><div><b>1. Tabac</b><ul><li>Je diminue progressivement mon nombre de cigarettes.</li><li>Le tabac freine la cicatrisation.</li></ul><a class="xl" data-k="rf1" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
+<div class="bon c1"><span class="ico" aria-hidden="true">🩹</span><div><b>2. Cicatrice</b><ul><li>Je protège ma cicatrice du soleil.</li><li>Je la masse chaque jour.</li><li>Je garde une bonne hygiène de la plaie.</li></ul><a class="xl" data-k="rf2" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
+<div class="bon c2"><span class="ico" aria-hidden="true">🌙</span><div><b>3. Qualité de vie</b><ul><li>Je gère mon sommeil.</li><li>J’essaie d’améliorer la gestion de mon stress au quotidien.</li><li>J’adapte mon poste de travail.</li><li>J’utilise mon bras dans les gestes de la vie quotidienne.</li></ul><a class="xl" data-k="rf3" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
+<div class="bon c0"><span class="ico" aria-hidden="true">🥗</span><div><b>4. Bonne hygiène de vie</b><ul><li>Je mange sainement (fibres et protéines).</li><li>Je m’hydrate bien.</li><li>Je reste actif chaque jour, en suivant les recommandations de l’OMS.</li></ul><a class="xl" data-k="rf4" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
+<div class="bon c1"><span class="ico" aria-hidden="true">🏋️</span><div><b>5. Gestion du stress mécanique</b><ul><li>Je gère bien mon entraînement.</li></ul><a class="xl" data-k="rf5" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
+<div class="bon c2"><span class="ico" aria-hidden="true">🧘</span><div><b>6. Gestion du stress général</b><ul><li>Je fais des exercices de relaxation, comme la cohérence cardiaque.</li><li>Je pratique la méditation ou la relaxation.</li><li>Je fais des exercices de respiration.</li></ul><a class="xl" data-k="rf6" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Voir</a></div></div>
 </div>
 
 <h2>Quand j’appelle mon kiné</h2>
@@ -744,14 +770,19 @@ window.claude={use:function(n){return ready.then(function(api){return api?(api[n
 <div class="card"><h3>Moral en baisse</h3>Rappeler l’objectif tennis, fixer un mini-défi de la semaine, en parler lors de la visio.</div>
 </div>
 
+<h2>Vidéos reçues du patient</h2>
+<p class="sub">Les vidéos déposées par le patient apparaissent ici. Cliquez sur « Voir » pour la visionner, ou sur « Télécharger » pour mesurer les amplitudes avec l’application GonioCam.</p>
+<div id="kv-list" class="card"><p style="margin:0;color:var(--mute)">Aucune vidéo reçue pour le moment.</p></div>
+<p id="kv-m" aria-live="polite" style="min-height:1.4em;font-size:14px;margin:6px 0 0"></p>
+
 <h2>Conseils et éducation thérapeutique</h2>
-<div class="grid">
-<div class="card"><h3>Tabac</h3>Diminution progressive du nombre de cigarettes. Le tabac freine la cicatrisation du tendon : proposer un accompagnement à l’arrêt et le valoriser comme un objectif de santé.</div>
-<div class="card"><h3>Cicatrice</h3>Protection contre le soleil, massage quotidien et bonne hygiène de la plaie.</div>
-<div class="card"><h3>Qualité de vie</h3>Sommeil régulier et gestion du stress au quotidien. Poste de travail adapté : écran à hauteur des yeux, avant-bras soutenus, souris près du corps, pause de 2 min toutes les 30 à 45 min avec 5 rétractions scapulaires, kit mains libres. Bras utilisé dans les gestes du quotidien, charges par paliers et sans à-coups.</div>
-<div class="card"><h3>Bonne hygiène de vie</h3>Alimentation saine (fibres et protéines), bonne hydratation, activité quotidienne selon les recommandations de l’OMS. La séance cardio hebdomadaire entretient le cœur (HTA) en ménageant l’épaule.</div>
-<div class="card"><h3>Gestion du stress mécanique</h3>Bonne gestion de l’entraînement : progression par paliers, jamais à l’échec. Pas de raquette en jeu sans accord du chirurgien.</div>
-<div class="card"><h3>Gestion du stress général</h3>Relaxation (cohérence cardiaque), méditation, exercices de respiration, 5 min de respiration lente en fin de journée. Parler de la peur de « re-déchirer » pour la dédramatiser.</div>
+<div class="grid cseil">
+<div class="card"><h3>Tabac</h3>Diminution progressive du nombre de cigarettes. Le tabac freine la cicatrisation du tendon : proposer un accompagnement à l’arrêt et le valoriser comme un objectif de santé.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf1" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
+<div class="card"><h3>Cicatrice</h3>Protection contre le soleil, massage quotidien et bonne hygiène de la plaie.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf2" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
+<div class="card"><h3>Qualité de vie</h3>Sommeil régulier et gestion du stress au quotidien. Poste de travail adapté : écran à hauteur des yeux, avant-bras soutenus, souris près du corps, pause de 2 min toutes les 30 à 45 min avec 5 rétractions scapulaires, kit mains libres. Bras utilisé dans les gestes du quotidien, charges par paliers et sans à-coups.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf3" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
+<div class="card"><h3>Bonne hygiène de vie</h3>Alimentation saine (fibres et protéines), bonne hydratation, activité quotidienne selon les recommandations de l’OMS. La séance cardio hebdomadaire entretient le cœur (HTA) en ménageant l’épaule.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf4" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
+<div class="card"><h3>Gestion du stress mécanique</h3>Bonne gestion de l’entraînement : progression par paliers, jamais à l’échec. Pas de raquette en jeu sans accord du chirurgien.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf5" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
+<div class="card"><h3>Gestion du stress général</h3>Relaxation (cohérence cardiaque), méditation, exercices de respiration, 5 min de respiration lente en fin de journée. Parler de la peur de « re-déchirer » pour la dédramatiser.<label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="rf6" data-def="" value="" placeholder="https://…" maxlength="500"></label></div>
 </div>
 
 <h2>Quand stopper et contacter le kiné</h2>
@@ -926,7 +957,7 @@ window.claude.use('db').then(function(d){if(!d)return;ref=d.collection('notes').
 ref.onSnapshot(function(s){cur=(s.exists&&s.data())||{};show()},function(){})}).catch(function(){})
 })();
 </script>
-<script>(function(){var b=document.querySelectorAll('#view-patient .dbtn');for(var i=0;i<b.length;i++){b[i].addEventListener('click',function(){var m=this.parentNode.querySelector('.dm');if(m)m.textContent='Maquette : le dépôt de vidéo n’est pas encore actif.'})}})();</script>
+
 <script>(function(){
 function $(i){return document.getElementById(i)}
 var open={1:true},cur=1,ref=null;
@@ -972,20 +1003,53 @@ for(var j=0;j<ps.length;j++){ps[j].hidden=true}
 if(!open){b.setAttribute('aria-expanded','true');w.querySelector('.sess[data-s="'+s+'"]').hidden=false}})})();</script>
 <script>(function(){
 function $(i){return document.getElementById(i)}
-var ref=null,assets=null,curK=null,orig=new Map(),ov={d:{},t:{},x:{},l:{},i:{}};
+var ref=null,assets=null,curK=null,orig=new Map(),lastSig=null,pend={},ov={d:{},t:{},x:{},l:{},i:{},a:{},r:{}};
 function msg(t,c){var m=$('kx-m');if(m){m.textContent=t;m.style.color=c==='r'?'var(--red)':'var(--teal)'}}
 function okUrl(v){try{var u=new URL(v);return u.protocol==='http:'||u.protocol==='https:'}catch(e){return false}}
 function okId(v){return typeof v==='string'&&/^(?:[0-9a-f]{32}|loc[0-9a-z]{6,}|img[0-9a-z]{6,})$/.test(v)}
-function copyAll(){var n={};['d','t','x','l','i'].forEach(function(f){var r={};for(var k in ov[f]){r[k]=ov[f][k]}n[f]=r});return n}
+function okKey(k){return typeof k==='string'&&/^w\ds\dn[0-9a-z]+$/.test(k)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function mk(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild}
+function copyAll(){return JSON.parse(JSON.stringify(ov))}
 function persist(n,okMsg){
 ov=n;applyAll();
 if(!ref){msg('Enregistrement indisponible : ouvrez la page avec votre compte.','r');return Promise.reject()}
-return ref.set({d:n.d,t:n.t,x:n.x,l:n.l,i:n.i,ts:new Date().toISOString()}).then(function(){msg(okMsg)}).catch(function(e){msg('Enregistrement impossible : votre accès ne permet pas d’écrire.','r');throw e})}
+return ref.set({d:n.d,t:n.t,x:n.x,l:n.l,i:n.i,a:n.a,r:n.r,ts:new Date().toISOString()}).then(function(){msg(okMsg)}).catch(function(e){msg('Enregistrement impossible : votre accès ne permet pas d’écrire.','r');throw e})}
+var PLAY='<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+function pDyn(it){var k=it.k;return '<div class="card xc dyn"><div class="xh"><h3 data-f="t" data-k="'+k+'" data-def="'+esc(it.t)+'">'+esc(it.t)+'</h3><a class="xl" data-k="'+k+'" target="_blank" rel="noopener noreferrer" aria-disabled="true" title="Aucun lien pour le moment">'+PLAY+'Voir</a></div><img class="xi" data-k="'+k+'" alt="" hidden><p data-f="x" data-k="'+k+'" data-def="'+esc(it.x)+'">'+esc(it.x)+'</p><span class="dose" data-f="d" data-k="'+k+'" data-def="'+esc(it.d)+'">'+esc(it.d)+'</span></div>'}
+function kDyn(it){var k=it.k;return '<div class="card dyn"><img class="xi" data-k="'+k+'" alt="" hidden><div class="imgrow"><button type="button" class="ibtn" data-k="'+k+'">Choisir une illustration</button><button type="button" class="irm" data-k="'+k+'" hidden>Retirer</button></div><label>Titre<input type="text" class="ed-t" data-f="t" data-k="'+k+'" data-def="'+esc(it.t)+'" value="'+esc(it.t)+'" maxlength="80"></label><label>Consigne<textarea class="ed-x" rows="2" data-f="x" data-k="'+k+'" data-def="'+esc(it.x)+'" maxlength="300">'+esc(it.x)+'</textarea></label><div class="edrow"><label>Séries et répétitions<input type="text" class="dose-in" data-f="d" data-k="'+k+'" data-def="'+esc(it.d)+'" value="'+esc(it.d)+'" maxlength="30"></label><label>Lien (vidéo ou explication)<input type="url" class="ed-l" data-f="l" data-k="'+k+'" data-def="" value="" placeholder="https://…" maxlength="500"></label></div><div class="delrow"><button type="button" class="xdel" data-k="'+k+'">Supprimer l’exercice</button></div></div>'}
+function delRow(k){return '<div class="delrow"><button type="button" class="xdel" data-k="'+k+'">Supprimer l’exercice</button></div>'}
+function annotate(){
+for(var w=1;w<=8;w++){var p=$('p'+w);if(!p)continue;var ss=p.querySelectorAll('.sess');for(var s=0;s<ss.length;s++){ss[s].setAttribute('data-sess','w'+w+'s'+ss[s].getAttribute('data-s'))}}
+var wk=document.querySelectorAll('#view-kine details.kwk:not(.ksess)');
+for(var i=0;i<wk.length;i++){var ks=wk[i].querySelectorAll('details.ksess');
+for(var j=0;j<ks.length;j++){
+ks[j].setAttribute('data-sess','w'+(i+1)+'s'+(j+1));
+var kex=ks[j].querySelector('.kex'),cards=kex.querySelectorAll('.card');
+for(var c=0;c<cards.length;c++){var t=cards[c].querySelector('.ed-t[data-k]');if(t){cards[c].appendChild(mk(delRow(t.getAttribute('data-k'))))}}
+kex.appendChild(mk('<div class="addrow"><button type="button" class="xadd">Ajouter un exercice</button><button type="button" class="xrest" hidden>Rétablir les exercices supprimés</button></div>'))}}}
+function renderDyn(){
+var sig=JSON.stringify(ov.a);if(sig===lastSig)return;lastSig=sig;
+var old=document.querySelectorAll('.dyn');for(var i=0;i<old.length;i++){old[i].remove()}
+for(var sk in ov.a){var arr=ov.a[sk];if(!Array.isArray(arr))continue;
+var ps=document.querySelector('#view-patient .sess[data-sess="'+sk+'"]');
+var ks=document.querySelector('#view-kine details.ksess[data-sess="'+sk+'"]');
+var kex=ks&&ks.querySelector('.kex'),ar=kex&&kex.querySelector('.addrow');
+arr.forEach(function(it){
+if(!it||!okKey(it.k))return;
+it={k:it.k,t:String(it.t||''),x:String(it.x||''),d:String(it.d||'')};
+if(ps){ps.appendChild(mk(pDyn(it)))}
+if(kex&&ar){kex.insertBefore(mk(kDyn(it)),ar)}})}}
 function showImg(img,id){
 if(!orig.has(img)){orig.set(img,img.getAttribute('src')||'')}
 if(okId(id)){img.src=window.__blobSrc?window.__blobSrc(id):'/_blob/'+id;img.alt='Illustration de l’exercice';img.hidden=false}
 else{var o=orig.get(img);if(o){img.src=o;img.alt='Illustration de l’exercice';img.hidden=false}else{img.removeAttribute('src');img.hidden=true}}}
 function applyAll(){
+renderDyn();
+var pc=document.querySelectorAll('#view-patient .card.xc');
+for(var z=0;z<pc.length;z++){var h=pc[z].querySelector('h3[data-k]');pc[z].hidden=!!(h&&ov.r[h.getAttribute('data-k')])}
+var kc=document.querySelectorAll('#view-kine .kex .card');
+for(var y=0;y<kc.length;y++){var tt=kc[y].querySelector('.ed-t[data-k]');if(tt){kc[y].hidden=!!ov.r[tt.getAttribute('data-k')]}}
 var a=document.querySelectorAll('#view-patient [data-f]');
 for(var i=0;i<a.length;i++){var e=a[i],f=e.getAttribute('data-f'),k=e.getAttribute('data-k');e.textContent=(ov[f]&&ov[f][k])||e.getAttribute('data-def')}
 var ls=document.querySelectorAll('#view-patient .xl');
@@ -997,12 +1061,15 @@ for(var m=0;m<im.length;m++){showImg(im[m],ov.i[im[m].getAttribute('data-k')])}
 var rm=document.querySelectorAll('#view-kine .irm');
 for(var r=0;r<rm.length;r++){rm[r].hidden=!okId(ov.i[rm[r].getAttribute('data-k')])}
 var b=document.querySelectorAll('#view-kine [data-f]');
-for(var n=0;n<b.length;n++){var x=b[n];if(document.activeElement!==x){var ff=x.getAttribute('data-f');x.value=(ov[ff]&&ov[ff][x.getAttribute('data-k')])||x.getAttribute('data-def')||''}}}
+for(var n=0;n<b.length;n++){var x=b[n];if(document.activeElement!==x){var ff=x.getAttribute('data-f');x.value=(ov[ff]&&ov[ff][x.getAttribute('data-k')])||x.getAttribute('data-def')||''}}
+var rs=document.querySelectorAll('#view-kine details.ksess');
+for(var q=0;q<rs.length;q++){var sk=rs[q].getAttribute('data-sess'),btn=rs[q].querySelector('.xrest'),cnt=0;
+for(var kk in ov.r){if(ov.r[kk]&&kk.indexOf(sk+'e')===0){cnt++}}
+if(btn){btn.hidden=!cnt;btn.textContent='Rétablir les exercices supprimés ('+cnt+')'}}}
 document.addEventListener('imgcache',function(){applyAll()});
 var MAX={d:30,t:80,x:300,l:500};
-var ins=document.querySelectorAll('#view-kine [data-f]');
-for(var q=0;q<ins.length;q++){(function(inp){
-inp.addEventListener('change',function(){
+document.addEventListener('change',function(ev){
+var inp=ev.target;if(!inp.matches||!inp.matches('#view-kine [data-f]'))return;
 var f=inp.getAttribute('data-f'),k=inp.getAttribute('data-k'),def=inp.getAttribute('data-def')||'',v=inp.value.trim().slice(0,MAX[f]);
 if(f==='l'){
 if(v&&!okUrl(v)){
@@ -1012,8 +1079,7 @@ else if(!v){v=def}
 inp.value=v;
 var n=copyAll();
 if(v===def||(f==='l'&&!v)){delete n[f][k]}else{n[f][k]=v}
-persist(n,'Enregistré : le patient le voit après rechargement de sa page.').catch(function(){})})})(ins[q])}
-// --- illustrations ---
+persist(n,'Enregistré : le patient le voit après rechargement de sa page.').catch(function(){})});
 function toBlob(file){return new Promise(function(res,rej){
 if(file.type==='image/svg+xml'){if(file.size>2097152){rej(new Error('big'))}else{res(file)}return}
 var url=URL.createObjectURL(file),img=new Image();
@@ -1023,10 +1089,6 @@ URL.revokeObjectURL(url);
 c.toBlob(function(b){b?res(b):rej(new Error('enc'))},file.type==='image/png'?'image/png':'image/jpeg',0.8)};
 img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('img'))};img.src=url})}
 var fi=$('kx-file');
-var btns=document.querySelectorAll('#view-kine .ibtn');
-for(var u=0;u<btns.length;u++){btns[u].addEventListener('click',function(){
-if(!assets){msg('Ajout d’image indisponible avec ce compte : il faut un accès éditeur.','r');return}
-curK=this.getAttribute('data-k');fi.value='';fi.click()})}
 if(fi){fi.addEventListener('change',function(){
 var f=fi.files&&fi.files[0],k=curK;if(!f||!k)return;
 if(f.type.indexOf('image/')!==0){msg('Ce fichier n’est pas une image.','r');return}
@@ -1035,16 +1097,153 @@ toBlob(f).then(function(b){return assets.upload(b)}).then(function(r){
 var old=ov.i[k],n=copyAll();n.i[k]=r.id;
 return persist(n,'Illustration enregistrée : le patient la voit après rechargement de sa page.').then(function(){if(okId(old)){try{assets.delete(old).catch(function(){})}catch(e){}}})
 }).catch(function(e){if(e)msg('Envoi impossible : '+((e&&e.code)||'image trop lourde ou accès refusé')+'.','r')})})}
-var rms=document.querySelectorAll('#view-kine .irm');
-for(var z=0;z<rms.length;z++){rms[z].addEventListener('click',function(){
-var k=this.getAttribute('data-k'),old=ov.i[k],n=copyAll();delete n.i[k];
-persist(n,'Illustration retirée.').then(function(){if(okId(old)&&assets){try{assets.delete(old).catch(function(){})}catch(e){}}}).catch(function(){})})}
+function dropOverrides(n,k){['d','t','x','l'].forEach(function(f){delete n[f][k]})}
+document.addEventListener('click',function(ev){
+if(!ev.target.closest)return;
+var b;
+if((b=ev.target.closest('#view-kine .xadd'))){
+var sk=b.closest('details.ksess').getAttribute('data-sess');
+var it={k:sk+'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),t:'Nouvel exercice',x:'Décrivez l’exercice ici.',d:'3 × 10'};
+var n=copyAll();if(!Array.isArray(n.a[sk])){n.a[sk]=[]}n.a[sk].push(it);
+persist(n,'Exercice ajouté : modifiez son titre, sa consigne et sa dose.').catch(function(){});return}
+if((b=ev.target.closest('#view-kine .xdel'))){
+var k=b.getAttribute('data-k');
+if(!pend[k]){b.textContent='Confirmer la suppression ?';pend[k]=setTimeout(function(){b.textContent='Supprimer l’exercice';pend[k]=null},4000);return}
+clearTimeout(pend[k]);pend[k]=null;b.textContent='Supprimer l’exercice';
+var n2=copyAll(),isDyn=false;
+for(var sk2 in n2.a){var arr=n2.a[sk2];if(!Array.isArray(arr))continue;for(var q=arr.length-1;q>=0;q--){if(arr[q]&&arr[q].k===k){arr.splice(q,1);isDyn=true}}if(!arr.length){delete n2.a[sk2]}}
+var old=n2.i[k];
+if(isDyn){dropOverrides(n2,k);delete n2.i[k];delete n2.r[k]}else{n2.r[k]=true}
+persist(n2,'Exercice supprimé.').then(function(){if(isDyn&&okId(old)&&assets){try{assets.delete(old).catch(function(){})}catch(e){}}}).catch(function(){});return}
+if((b=ev.target.closest('#view-kine .xrest'))){
+var sk3=b.closest('details.ksess').getAttribute('data-sess'),n3=copyAll();
+for(var kk in n3.r){if(kk.indexOf(sk3+'e')===0){delete n3.r[kk]}}
+persist(n3,'Exercices rétablis.').catch(function(){});return}
+if((b=ev.target.closest('#view-kine .ibtn'))){
+if(!assets){msg('Ajout d’image indisponible avec ce compte : il faut un accès éditeur.','r');return}
+curK=b.getAttribute('data-k');fi.value='';fi.click();return}
+if((b=ev.target.closest('#view-kine .irm'))){
+var k4=b.getAttribute('data-k'),old4=ov.i[k4],n4=copyAll();delete n4.i[k4];
+persist(n4,'Illustration retirée.').then(function(){if(okId(old4)&&assets){try{assets.delete(old4).catch(function(){})}catch(e){}}}).catch(function(){})}});
+annotate();
 if(!(window.claude&&window.claude.use))return;
 window.claude.use('assets').then(function(a){assets=a}).catch(function(){});
 window.claude.use('db').then(function(d){if(!d)return;ref=d.collection('settings').doc('doses');
 ref.onSnapshot(function(s){var v=(s.exists&&s.data())||{};
 function m(o){return (o&&typeof o==='object')?o:{}}
-ov={d:m(v.d),t:m(v.t),x:m(v.x),l:m(v.l),i:m(v.i)};applyAll()},function(){})}).catch(function(){})
+ov={d:m(v.d),t:m(v.t),x:m(v.x),l:m(v.l),i:m(v.i),a:m(v.a),r:m(v.r)};applyAll()},function(){})}).catch(function(){})
+})();
+</script>
+<script>(function(){
+function $(i){return document.getElementById(i)}
+var VCHUNK=700*1024,VMAX=40*1024*1024;
+var videos=null,chunks=null,list=[],blobs={},pend={},curDrop=null;
+function MB(n){return (n/1048576).toFixed(n>=10485760?0:1).replace('.',',')}
+function fmtDate(ts){try{return new Date(ts).toLocaleString('fr-BE',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}}
+function b64(u8){var s='',i=0,S=8192;for(;i<u8.length;i+=S){s+=String.fromCharCode.apply(null,u8.subarray(i,i+S))}return btoa(s)}
+function unb64(b){var s=atob(b),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++){u[i]=s.charCodeAt(i)}return u}
+function readSlice(file,a,b){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(new Uint8Array(r.result))};r.onerror=function(){rej(new Error('lecture'))};r.readAsArrayBuffer(file.slice(a,b))})}
+function getD(c,id){return c.doc(id).get().then(function(s){return s&&s.exists?s.data():null})}
+// ---------- patient ----------
+var drops=document.querySelectorAll('#view-patient .drop');
+var fi=document.createElement('input');fi.type='file';fi.accept='video/*';fi.hidden=true;document.body.appendChild(fi);
+for(var i=0;i<drops.length;i++){(function(d,slot){
+d.setAttribute('data-slot',slot);
+var sm=d.querySelector('small');if(sm){sm.textContent='Vidéo courte (10 à 15 s), MP4 ou MOV · '+MB(VMAX)+' Mo maximum'}
+var pr=document.createElement('progress');pr.className='vp';pr.max=100;pr.value=0;pr.hidden=true;d.appendChild(pr);
+var lastp=document.createElement('p');lastp.className='dl';d.appendChild(lastp);
+d.querySelector('.dbtn').addEventListener('click',function(){curDrop=d;fi.value='';fi.click()})})(drops[i],i===0?'face':'profil')}
+function dmsg(d,t,c){var m=d.querySelector('.dm');if(m){m.textContent=t;m.style.color=c==='r'?'var(--red)':''}}
+fi.addEventListener('change',function(){
+var f=fi.files&&fi.files[0],d=curDrop;if(!f||!d)return;
+var btn=d.querySelector('.dbtn'),pr=d.querySelector('.vp'),slot=d.getAttribute('data-slot');
+if(!videos){dmsg(d,'Dépôt indisponible : la connexion à la base de données n’est pas établie.','r');return}
+if(!((f.type&&f.type.indexOf('video/')===0)||(!f.type&&/\.(mp4|mov|m4v|webm|3gp)$/i.test(f.name||'')))){dmsg(d,'Ce fichier n’est pas une vidéo.','r');return}
+if(f.size>VMAX){dmsg(d,'Vidéo trop lourde ('+MB(f.size)+' Mo) : maximum '+MB(VMAX)+' Mo. Filmez une séquence plus courte ou en qualité standard.','r');return}
+var id='v'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),n=Math.max(1,Math.ceil(f.size/VCHUNK)),done=0;
+btn.disabled=true;pr.hidden=false;pr.value=0;dmsg(d,'Envoi en cours : ne fermez pas la page… 0 %');
+function step(k){
+if(k>=n){return videos.doc(id).set({slot:slot,name:String(f.name||'video').slice(0,120),type:f.type||'video/mp4',size:f.size,n:n,ts:new Date().toISOString()})}
+return readSlice(f,k*VCHUNK,(k+1)*VCHUNK).then(function(u8){return chunks.doc(id+'_'+k).set({d:b64(u8)})}).then(function(){
+done=k+1;var p=Math.round(done/n*100);pr.value=p;dmsg(d,'Envoi en cours : ne fermez pas la page… '+p+' %');return step(k+1)})}
+step(0).then(function(){
+btn.disabled=false;pr.hidden=true;dmsg(d,'Vidéo envoyée ✔ ('+MB(f.size)+' Mo). Votre kiné peut la récupérer.')
+}).catch(function(e){
+btn.disabled=false;pr.hidden=true;
+for(var k=0;k<done;k++){try{chunks.doc(id+'_'+k).delete().catch(function(){})}catch(x){}}
+dmsg(d,'Envoi impossible'+((e&&e.code)?' ('+e.code+')':'')+'. Vérifiez votre connexion et réessayez.','r')})});
+function renderPatient(){
+for(var i=0;i<drops.length;i++){var slot=drops[i].getAttribute('data-slot'),last=null;
+for(var j=0;j<list.length;j++){if(list[j].slot===slot){last=list[j];break}}
+var lp=drops[i].querySelector('.dl');if(lp){lp.textContent=last?'Dernier envoi : '+fmtDate(last.ts)+' ('+last.name+')':''}}}
+// ---------- kiné ----------
+var box=$('kv-list'),ui={},dlCap=null;
+function U(id){return ui[id]||(ui[id]={msg:'',shown:false})}
+function setSt(id,t){U(id).msg=t;var r=box&&box.querySelector('.kvrow[data-id="'+id+'"] .kvst');if(r){r.textContent=t}}
+function kmsg(t,c){var m=$('kv-m');if(m){m.textContent=t;m.style.color=c==='r'?'var(--red)':'var(--teal)'}}
+function find(id){for(var i=0;i<list.length;i++){if(list[i].id===id)return list[i]}return null}
+function showVideo(row,v,url){
+var pv=row.querySelector('.kvprev');pv.innerHTML='';
+var vd=document.createElement('video');vd.controls=true;vd.setAttribute('playsinline','');vd.src=url;
+vd.addEventListener('error',function(){setSt(v.id,'Lecture impossible dans cette fenêtre : utilisez « Télécharger ».')});
+pv.appendChild(vd)}
+function renderKine(){
+if(!box)return;
+box.innerHTML='';
+if(!list.length){var p=document.createElement('p');p.style.cssText='margin:0;color:var(--mute)';p.textContent='Aucune vidéo reçue pour le moment.';box.appendChild(p);return}
+list.forEach(function(v){
+var row=document.createElement('div');row.className='kvrow';row.setAttribute('data-id',v.id);
+var info=document.createElement('div');info.className='kvinfo';
+var b=document.createElement('b');b.textContent=(v.slot==='profil'?'Profil':'Face')+' · '+fmtDate(v.ts);info.appendChild(b);
+var s=document.createElement('span');s.textContent=v.name+' · '+MB(v.size)+' Mo';info.appendChild(s);
+row.appendChild(info);
+var act=document.createElement('div');act.className='kvact';
+var shown=U(v.id).shown&&blobs[v.id]&&blobs[v.id].url;
+[['view',shown?'Masquer':'Voir'],['dl','Télécharger'],['del','Supprimer']].forEach(function(a){var bt=document.createElement('button');bt.type='button';bt.className='kv'+a[0];bt.setAttribute('data-id',v.id);bt.textContent=a[1];act.appendChild(bt)});
+row.appendChild(act);
+var st=document.createElement('p');st.className='kvst';st.textContent=U(v.id).msg||'';row.appendChild(st);
+var pv=document.createElement('div');pv.className='kvprev';row.appendChild(pv);
+box.appendChild(row);
+if(shown){showVideo(row,v,blobs[v.id].url)}})}
+function loadBlob(v){
+if(blobs[v.id]&&blobs[v.id].url){return Promise.resolve(blobs[v.id])}
+setSt(v.id,'Chargement… 0 %');
+var parts=[];
+function step(k){
+if(k>=v.n){var bl=new Blob(parts,{type:v.type||'video/mp4'}),o={blob:bl,url:URL.createObjectURL(bl)};blobs[v.id]=o;setSt(v.id,'');return Promise.resolve(o)}
+return getD(chunks,v.id+'_'+k).then(function(d){
+if(!d||typeof d.d!=='string'){throw new Error('morceau manquant')}
+parts.push(unb64(d.d));setSt(v.id,'Chargement… '+Math.round((k+1)/v.n*100)+' %');return step(k+1)})}
+return step(0)}
+function fileName(v){var n=String(v.name||'video.mp4');if(/\.mov$/i.test(n)){n=n.replace(/\.mov$/i,'.mp4')}if(!/\.(mp4|webm)$/i.test(n)){n+='.mp4'}return n}
+document.addEventListener('click',function(ev){
+if(!ev.target.closest)return;
+var b=ev.target.closest('#kv-list button');if(!b)return;
+var id=b.getAttribute('data-id'),v=find(id);if(!v)return;
+if(b.className==='kvview'){
+if(U(id).shown){U(id).shown=false;renderKine();return}
+loadBlob(v).then(function(){U(id).shown=true;renderKine()}).catch(function(){setSt(id,'Chargement impossible : une partie de la vidéo est introuvable ou inaccessible.')});return}
+if(b.className==='kvdl'){
+loadBlob(v).then(function(o){
+if(dlCap){
+setSt(id,'Enregistrement : acceptez la fenêtre de confirmation…');
+return dlCap.save({filename:fileName(v),data:o.blob}).then(function(){setSt(id,'Fichier enregistré.')}).catch(function(e){setSt(id,(e&&e.code==='declined')?'Téléchargement annulé.':'Téléchargement impossible ('+((e&&e.code)||'erreur')+').')})}
+var a=document.createElement('a');a.href=o.url;a.download=String(v.name||'video.mp4');document.body.appendChild(a);a.click();a.remove();setSt(id,'Téléchargement lancé.')
+}).catch(function(){setSt(id,'Chargement impossible : une partie de la vidéo est introuvable ou inaccessible.')});return}
+if(b.className==='kvdel'){
+if(!pend[id]){b.textContent='Confirmer la suppression ?';setSt(id,'Cliquez de nouveau pour supprimer définitivement cette vidéo.');pend[id]=setTimeout(function(){pend[id]=null;setSt(id,'');var bb=box.querySelector('.kvrow[data-id="'+id+'"] .kvdel');if(bb){bb.textContent='Supprimer'}},5000);return}
+clearTimeout(pend[id]);pend[id]=null;b.disabled=true;setSt(id,'Suppression en cours…');
+var k=0;(function step(){
+if(k>=v.n){videos.doc(id).delete().then(function(){if(blobs[id]){try{URL.revokeObjectURL(blobs[id].url)}catch(e){}delete blobs[id]}delete ui[id];kmsg('Vidéo supprimée.')}).catch(function(){setSt(id,'Suppression impossible : votre accès ne permet pas de supprimer.');var bb=box.querySelector('.kvrow[data-id="'+id+'"] .kvdel');if(bb){bb.disabled=false;bb.textContent='Supprimer'}});return}
+chunks.doc(id+'_'+k).delete().catch(function(){}).then(function(){k++;step()})})()}});
+// ---------- connexion à la base ----------
+if(!(window.claude&&window.claude.use))return;
+window.claude.use('db').then(function(d){if(!d)return;
+videos=d.collection('videos');chunks=d.collection('vchunks');
+window.claude.use('downloads').then(function(x){dlCap=x}).catch(function(){});
+videos.onSnapshot(function(s){
+list=s.docs.map(function(x){var v=x.data()||{};v.id=x.id;return v}).filter(function(v){return v&&typeof v.n==='number'&&typeof v.size==='number'&&typeof v.ts==='string'}).sort(function(a,b){return a.ts<b.ts?1:-1});
+renderPatient();renderKine()},function(){})}).catch(function(){})
 })();
 </script>
 <script type="module">
@@ -1067,6 +1266,7 @@ function snap(id,d){return {id:id,exists:d!==undefined,data:function(){return d=
 var FULL={code:'espace de stockage plein'};
 function docRef(c,id){return {
 set:function(data){var db=rd();db[c]=db[c]||{};db[c][id]=JSON.parse(JSON.stringify(data));if(!wr(db)){return Promise.reject(FULL)}fire();return Promise.resolve()},
+get:function(){var db=rd();return Promise.resolve(snap(id,db[c]&&db[c][id]))},
 'delete':function(){var db=rd();if(db[c]){delete db[c][id]}if(!wr(db)){return Promise.reject(FULL)}fire();return Promise.resolve()},
 onSnapshot:function(cb){function run(){var db=rd();cb(snap(id,db[c]&&db[c][id]))}ls.push(run);setTimeout(run,0);return unsub(run)}}}
 function collRef(c){return {
@@ -1108,6 +1308,7 @@ function snapDoc(s){return {id:s.id,exists:s.exists(),data:function(){return s.d
 var db={collection:function(c){return {
 doc:function(id){var r=FS.doc(fs,c,id);return {
 set:function(data){return FS.setDoc(r,data)},
+get:function(){return FS.getDoc(r).then(snapDoc)},
 'delete':function(){return FS.deleteDoc(r)},
 onSnapshot:function(cb,err){return FS.onSnapshot(r,function(s){cb(snapDoc(s))},err||function(){})}}},
 onSnapshot:function(cb,err){return FS.onSnapshot(FS.collection(fs,c),function(s){cb({docs:s.docs.map(function(d){return {id:d.id,exists:true,data:function(){return d.data()}}})})},err||function(){})}}}};
